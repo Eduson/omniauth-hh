@@ -23,8 +23,8 @@ module OmniAuth
           last_name: raw_info['last_name'],
           middle_name: raw_info['middle_name'],
           image: image_url,
-          urls: { resume: raw_info['resumes_url'],
-                  negotiations: raw_info['negotiations_url'] }
+          urls: { 'Resume' => raw_info['resumes_url'],
+                  'Negotiations' => raw_info['negotiations_url'] }
         }
       end
 
