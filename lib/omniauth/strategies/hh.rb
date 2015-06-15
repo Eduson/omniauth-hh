@@ -1,4 +1,4 @@
-require 'omniauth/oauth2'
+require 'omniauth/strategies/oauth2'
 require 'multi_json'
 
 module OmniAuth

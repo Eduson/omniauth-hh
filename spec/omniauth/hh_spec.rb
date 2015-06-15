@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe Omniauth::HH do
+describe OmniAuth::HH do
   it 'has a version number' do
-    expect(Omniauth::HH::VERSION).not_to be nil
+    expect(OmniAuth::HH::VERSION).not_to be nil
   end
 
   describe "client options" do
