@@ -43,7 +43,7 @@ module OmniAuth
       end
 
       def image_url
-        photos_info['items'].first['small'] if photos_info['items'].any?
+        photos_info['items'].first['medium'] if photos_info['items'].any?
       end
     end
   end
