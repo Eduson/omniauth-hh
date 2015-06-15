@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe OmniAuth::HH do
+  subject do
+    OmniAuth::Strategies::HH.new('appid', 'secret', {})
+  end
+
   it 'has a version number' do
     expect(OmniAuth::HH::VERSION).not_to be nil
   end

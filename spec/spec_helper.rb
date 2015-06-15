@@ -1,2 +1,4 @@
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
-require 'omniauth/hh'
+require 'rspec'
+require 'omniauth'
+require 'omniauth-hh'
