@@ -4,7 +4,7 @@ require 'multi_json'
 module OmniAuth
   module Strategies
     class HH < OmniAuth::Strategies::OAuth2
-      option :name, 'HeadHunter'
+      option :name, 'hh'
 
       option :client_options, { site: 'https://hh.ru',
                                 authorize_path: '/oauth/authorize' }
