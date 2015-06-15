@@ -10,6 +10,8 @@ module OmniAuth
                                 authorize_path: '/oauth/authorize',
                                 headers: { 'User-Agent' => "OmniAuth - HH/#{ OmniAuth::HH::VERSION } (marchi.martius@gmail.com)" } }
 
+      option access_token_options: { param_name: 'code' }
+
       uid { raw_info['id'] }
 
       info do
@@ -19,7 +21,6 @@ module OmniAuth
           first_name: raw_info['first_name'],
           last_name: raw_info['last_name'],
           middle_name: raw_info['middle_name'],
-          image: image_url,
           urls: { resume: raw_info['resumes_url'],
                   negotiations: raw_info['negotiations_url'] }
         }
@@ -30,7 +31,7 @@ module OmniAuth
       end
 
       def raw_info
-        @raw_info ||= MultiJson.load(access_token.get('/me'))
+        @raw_info ||= MultiJson.load(access_token.get('/me').body)
       end
 
       private
