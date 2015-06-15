@@ -39,7 +39,7 @@ module OmniAuth
       private
 
       def photos_info
-        @_photos_info ||= MultiJson.load(access_token.get('/artifacts/photo'))
+        @_photos_info ||= MultiJson.load(access_token.get('/artifacts/photo').body)
       end
 
       def image_url
