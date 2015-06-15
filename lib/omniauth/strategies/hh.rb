@@ -23,8 +23,7 @@ module OmniAuth
           last_name: raw_info['last_name'],
           middle_name: raw_info['middle_name'],
           image: image_url,
-          urls: { 'Resume' => raw_info['resumes_url'],
-                  'Negotiations' => raw_info['negotiations_url'] }
+          urls: { 'Resume' => resume_url }
         }
       end
 
@@ -44,6 +43,14 @@ module OmniAuth
 
       def image_url
         photos_info['items'].first['medium'] if photos_info['items'].any?
+      end
+
+      def resumes_info
+        @_resumes_info ||= MultiJson.load(access_token.get('/resumes/mine').body)
+      end
+
+      def resume_url
+        resumes_info['items'].first['url'] if resumes_info['items'].any?
       end
     end
   end
