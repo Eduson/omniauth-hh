@@ -7,6 +7,8 @@ module OmniAuth
       option :name, 'hh'
 
       option :client_options, { site: 'https://api.hh.ru',
+                                authorize_url: 'https://hh.ru/oauth/authorize',
+                                token_url: 'https://hh.ru/oauth/token',
                                 headers: { 'User-Agent' => "OmniAuth - HH/#{ OmniAuth::HH::VERSION } (marchi.martius@gmail.com)" } }
 
       option access_token_options: { param_name: 'code' }
