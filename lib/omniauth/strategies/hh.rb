@@ -7,7 +7,8 @@ module OmniAuth
       option :name, 'hh'
 
       option :client_options, { site: 'https://hh.ru',
-                                authorize_path: '/oauth/authorize' }
+                                authorize_path: '/oauth/authorize',
+                                headers: { 'User-Agent' => "OmniAuth - HH/#{ OmniAuth::HH::VERSION } (marchi.martius@gmail.com)" } }
 
       uid { raw_info['id'] }
 
