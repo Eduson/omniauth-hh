@@ -24,6 +24,13 @@ module OmniAuth
           middle_name: raw_info['middle_name'],
           image: image_url,
           urls: { 'Resume' => resume_url }
+        }.tap { |hash|
+          if raw_info['is_employer']
+            hash[:employer] = {
+              company_name: raw_info['employer']['name'],
+              vacancies: vacancies
+            }
+          end
         }
       end
 
@@ -33,12 +40,16 @@ module OmniAuth
 
       def raw_info
         @raw_info ||= MultiJson.load(access_token.get('/me').body)
+      rescue
+        { 'items' => [] }
       end
 
       private
 
       def photos_info
         @_photos_info ||= MultiJson.load(access_token.get('/artifacts/photo').body)
+      rescue
+        { 'items' => [] }
       end
 
       def image_url
@@ -47,10 +58,24 @@ module OmniAuth
 
       def resumes_info
         @_resumes_info ||= MultiJson.load(access_token.get('/resumes/mine').body)
+      rescue
+        { 'items' => [] }
       end
 
       def resume_url
         resumes_info['items'].first['url'] if resumes_info['items'].any?
+      end
+
+      def vacancies
+        @_vacancies = MultiJson.load(access_token.get("/employers/#{employer_id}/vacancies/active?manager_id=#{manager_id}").body)['items']
+      end
+
+      def employer_id
+        raw_info['employer']['id']
+      end
+
+      def manager_id
+        raw_info['employer']['manager_id']
       end
     end
   end
