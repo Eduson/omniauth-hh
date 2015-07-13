@@ -63,7 +63,7 @@ module OmniAuth
       end
 
       def resume_url
-        resumes_info['items'].first['url'] if resumes_info['items'].any?
+        resumes_info['items'].first['alternate_url'] if resumes_info['items'].any?
       end
 
       def vacancies
