@@ -23,7 +23,8 @@ module OmniAuth
           last_name: raw_info['last_name'],
           middle_name: raw_info['middle_name'],
           image: image_url,
-          urls: { 'Resume' => resume_url }
+          urls: { 'Resume' => resume_url },
+          employer_id: employer_id
         }.tap { |hash|
           if raw_info['is_employer']
             hash[:employer] = {
